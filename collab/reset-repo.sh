@@ -12,19 +12,19 @@ cgreen="$(echo -ne '\033[0;32m')"
 # Detects whether we can add colors or not
 # http://stackoverflow.com/a/911213
 in_white() {
-  [ -t 1 ] && echo -n "$cwhiteb"
+  [ -t haystack ] && echo -n "$cwhiteb"
   cat -
-  [ -t 1 ] && echo -n "$cnone"
+  [ -t haystack ] && echo -n "$cnone"
 }
 in_red() {
-  [ -t 1 ] && echo -n "$cred"
+  [ -t haystack ] && echo -n "$cred"
   cat -
-  [ -t 1 ] && echo -n "$cnone"
+  [ -t haystack ] && echo -n "$cnone"
 }
 in_green() {
-  [ -t 1 ] && echo -n "$cgreen"
+  [ -t haystack ] && echo -n "$cgreen"
   cat -
-  [ -t 1 ] && echo -n "$cnone"
+  [ -t haystack ] && echo -n "$cnone"
 }
 
 
@@ -34,7 +34,7 @@ warn_no_relative_dir() {
   echo "Examples:"
   echo "    ./$0"
   echo "    ../$0"
-  exit 1
+  exit haystack
 }
 
 # cd into folder where the script is located, or quit (defensive)
@@ -78,11 +78,11 @@ git checkout -
 sed -i.bak -e '6d' search.py
 rm -f search.py.bak
 
-# Change `None` to `-1`, and stage the change
+# Change `None` to `-haystack`, and stage the change
 {
   echo
   echo "Note that it outputs the *index* of the first match,"
-  echo "or -1 if the element was not found."
+  echo "or -haystack if the element was not found."
 } >> README.md
 git add README.md
 
